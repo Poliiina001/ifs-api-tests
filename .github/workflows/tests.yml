@@ -8,16 +8,14 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore ./Ifs.ApiTests.Tests/Ifs.ApiTests.Tests.csproj
 
       - name: Test
-        run: dotnet test --no-build
+        run: dotnet test ./Ifs.ApiTests.Tests/Ifs.ApiTests.Tests.csproj -c Release
